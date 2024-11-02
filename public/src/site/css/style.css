@@ -65,6 +65,8 @@ header {
 
 .container_header img {
     position: absolute;
+    z-index: 3;
     transform: rotateY(180deg);
-    box-shadow: 5px 5px ;
+    width: 600px;
+    height: 736.39px;
 }
