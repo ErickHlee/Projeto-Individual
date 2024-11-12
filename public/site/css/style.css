@@ -170,3 +170,10 @@ nav li h2 {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
+
+.quem {
+    height: 100vh;
+    width: 100%;
+    border-top: solid 10px #0b0b1388;
+    background: linear-gradient(150deg, #0B0B13, rgba(32, 32, 32, 0.938));
+}
