@@ -10,14 +10,14 @@
 header {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     height: 100vh;
     background: #0B0B13;
+
+    /* background: transparent; */
 }
 
 nav {
-    position: relative;
     display: flex;
     justify-content: center;
     height: 10%;
@@ -31,22 +31,115 @@ nav {
 nav li {
     display: flex;
     flex-direction: row;
-    width: 60%;
     justify-content: space-between;
     align-items: center;
+    width: 60%;
     color: white;
 }
 
-header img {
+.banner {
     display: flex;
-    position: absolute;
-    height: 70%;
-    width: 70%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+    /* background: red; */
 }
 
-.banner {
-    position: relative;
+.banner .container {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
     height: 90%;
-    width: 100%;
-    background: red;
+}
+
+.banner .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    z-index: 6;
+
+    /* background: red; */
+}
+
+.banner .title h2 {
+    font-size: 50px;
+    line-height: 40%;
+}
+
+.banner .title p {
+    margin-top: 0px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.banner .title span {
+    height: 10%;
+    width: 90%;
+    margin-top: 20px;
+    background: transparent;
+    overflow: hidden;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, #2430AF, #5567C4 ,rgb(115, 115, 115, 0.1)) 1;
+}
+
+.banner .background{
+    position: absolute;
+    /* top: 20%; */
+    width: 80%;
+    height: 80%;
+    opacity: 80%;
+    border-radius: 36px;
+    z-index: 2;
+}
+
+.banner .header1 {
+    color: white;
+}
+
+.banner .header2 {
+    color: rgb(255, 255, 255, 0.5);
+}
+
+.banner .header3 {
+    color: rgb(255, 255, 255, 0.15);
+}
+
+.banner p {
+    height: auto;
+    width: auto;
+    background: linear-gradient(120deg, #9EB8E3, #222EAE);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.kindreds {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ovelha {
+    position: absolute;
+    height: 800px;
+    width: 811.04px;
+    top: 0%;
+    left: 23%;
+    z-index: 5;
+
+}
+
+.lobo {
+    position: absolute;
+    height: 720px;
+    width: 773px;
+    top: 10%;
+    left: 33%;
+    z-index: 4;
 }
