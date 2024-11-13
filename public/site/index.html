@@ -14,11 +14,11 @@
     <header>
         <nav>
             <li>
-                <button class="ul1">Pau</button>
-                <button class="ul2">No</button>
+                <button class="ul1"><a href="#idMain">Quem</a></button>
+                <button class="ul2""><a href="#idMiddle">Showcase</a></button>
                 <h2>Derdnik</h2>
-                <button class="ul3">Cu</button>
-                <button class="ul4">Andy</button>
+                <button class="ul3""><a href="#idBottom">Contato</a></button>
+                <button class="ul4" onclick="rediredt()">Andy</button>
             </li>
         </nav>
 
@@ -53,7 +53,7 @@
         </div>
     </header>
 
-    <div class="main">
+    <div class="main" id="idMain">
         <div class="quem">
             <div class="container">
                 <h2>Quem são?</h2>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <div class="main-middle">
+    <div class="main-middle" id="idMiddle">
         <div class="container">
             <div class="slide">
                 <div class="item" style="background-image: url(../src/kindred-cards/Kindred_7.jpg);">
@@ -143,11 +143,16 @@
         </div>
     </div>
 
+    <div class="contato" id="idBottom">
+        <div class="container">
+
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../site/js/animacao.js"></script>
     <script src="../site/js/script.js"></script>
 </body>
-
 </html>
