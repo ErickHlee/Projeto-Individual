@@ -1,12 +1,12 @@
-const lamb = document.getElementById("idOvelha");
-const wolf = document.getElementById("idLobo");
+const lamb = document.getElementById("idOvelha"),
+    wolf = document.getElementById("idLobo"),
+    text = document.getElementById("idHistoria");
 
-window.onscroll = function () { changePosition() };
 
-function changePosition() {
+window.addEventListener('scroll', () => {
+    let value = window.scrollY;
 
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        lamb.style.position = 'fixed';
-        wolf.style.position = 'fixed';
-    }
-}
+    lamb.style.marginTop = value * -0.5 + 'px';
+    wolf.style.marginTop = value * -0.5 + 'px';
+    // text.style.marginRight = value * -2.5 + 'px';
+});

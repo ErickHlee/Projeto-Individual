@@ -25,7 +25,7 @@ nav {
     background: transparent;
     overflow: hidden;
     border-bottom: 1px solid transparent;
-    border-image: linear-gradient(90deg, rgb(115, 115, 115, 0.1), #F0F0F0 ,rgb(115, 115, 115, 0.1)) 1;
+    border-image: linear-gradient(90deg, rgb(115, 115, 115, 0.1), #F0F0F0, rgb(115, 115, 115, 0.1)) 1;
     z-index: 100;
 }
 
@@ -38,13 +38,44 @@ nav li {
     color: white;
 }
 
-nav ul:hover {
-    border-bottom: 1px solid #fff;
-    transition: all 0.5s ease;
+nav li button {
+    font-size: 18px;
+    color: #e1e1e1;
+    font-family: inherit;
+    font-weight: normal;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
 }
 
-nav ul {
-    cursor: pointer;
+nav li button:focus,
+nav li button:hover {
+    color: #fff;
+}
+
+nav li button:focus:after,
+nav li button:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+nav li button:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
 }
 
 nav li h2 {
@@ -101,10 +132,10 @@ nav li h2 {
     background: transparent;
     overflow: hidden;
     border-bottom: 3px solid transparent;
-    border-image: linear-gradient(90deg, #2430AF, #5567C4 ,rgb(115, 115, 115, 0.1)) 1;
+    border-image: linear-gradient(90deg, #2430AF, #5567C4, rgb(115, 115, 115, 0.1)) 1;
 }
 
-.banner .background{
+.banner .background {
     position: absolute;
     /* top: 20%; */
     width: 80%;
@@ -129,10 +160,10 @@ nav li h2 {
 .banner .p {
     height: auto;
     width: auto;
-    background: linear-gradient(120deg,#222EAE, #9EB8E3);
+    background: linear-gradient(120deg, #222EAE, #9EB8E3);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-     /* text-shadow: 2px 2px 2px #d0d0d024; */
+    /* text-shadow: 2px 2px 2px #d0d0d024; */
 }
 
 .kindreds {
@@ -143,8 +174,8 @@ nav li h2 {
 
 .ovelha {
     position: absolute;
-    height: 800px;
-    width: 811.04px;
+    height: 750px;
+    width: 760.35px;
     top: 0%;
     left: 23%;
     z-index: 5;
@@ -152,8 +183,8 @@ nav li h2 {
 
 .lobo {
     position: absolute;
-    height: 720px;
-    width: 773px;
+    height: 700px;
+    width: 751.53px;
     top: 10%;
     left: 33%;
     z-index: 4;
@@ -163,17 +194,42 @@ nav li h2 {
     position: absolute;
     font-size: 42px;
     font-weight: bold;
-    top: 12%;
+    top: 8%;
     right: 3%;
     text-align: end;
-    background: linear-gradient(270deg,rgba(153, 153, 153, 0.3), #030303);
+    background: linear-gradient(270deg, rgba(153, 153, 153, 0.3), #030303);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
 
 .quem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100%;
     border-top: solid 10px #0b0b1388;
     background: linear-gradient(150deg, #0B0B13, rgba(32, 32, 32, 0.938));
+    z-index: 100;
+}
+
+.quem .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    border: solid 1px transparent;
+    border-image: linear-gradient(120deg, #9EB8E3, #222EAE) 1;
+    background: transparent;
+    overflow: hidden;
+}
+
+.quem h2 {
+    display: flex;
+   text-align: center;
+    justify-self: center;
+    color: white;
+    margin-bottom: 30px;
 }

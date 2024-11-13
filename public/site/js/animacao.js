@@ -32,24 +32,23 @@ t1.from(".p", {
 
 t1.from(".historia", {
     opacity: 0,
-    duration: 1.5
+    duration: 1.5,
+    delay: 0
 });
-
-
-
-
 
 
 t2.from(".ovelha", {
     x: -225,
     opacity: 0,
-    duration: 1.5
+    duration: 1.5,
+    delay: 1.5
 });
 
 t2.from(".lobo", {
     x: 225,
     opacity: 0,
-    duration: 1.5
+    duration: 1.5,
+    delay: 1.5
 });
 
 
