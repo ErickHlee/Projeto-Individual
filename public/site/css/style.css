@@ -83,6 +83,7 @@ nav li button a {
     color: white;
     text-decoration: none;
 }
+
 nav li h2 {
     cursor: pointer;
 }
@@ -235,7 +236,7 @@ nav li h2 {
 
 .quem h2 {
     display: flex;
-   text-align: center;
+    text-align: center;
     justify-self: center;
     color: white;
     margin-bottom: 30px;
@@ -256,8 +257,8 @@ nav li h2 {
     position: relative;
     top: 50%;
     left: 50%;
-/*  mover o elemento ao longo dos eixos X e Y */
-/*  é legal que ele conseguiu mover para o centro da tela sem display: flex;*/
+    /*  mover o elemento ao longo dos eixos X e Y */
+    /*  é legal que ele conseguiu mover para o centro da tela sem display: flex;*/
     transform: translate(-50%, -50%);
     width: 1000px;
     height: 600px;
@@ -357,7 +358,7 @@ nav li h2 {
 }
 
 @keyframes animate {
-    from{
+    from {
         opacity: 0;
         transform: translate(0, 100px);
         filter: blur(22px);
@@ -395,12 +396,95 @@ nav li h2 {
     transition: 0.3s
 }
 
-.contato {
+.join {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 100%;
+    /* filter:blur(8px); */
+}
+
+.join .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    gap: 50px;
+}
+
+.join .skills {
+    width: 40%;
+    height: 50%;
+}
+
+.join .skills .container-skill {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.join .skills img {
+    margin: 20px 50px 50px 0;
+    width: 50px;
+    height: 50px;
+}
+
+.container-skill img:first-child {
+    border-right: 2px solid black;
+}
+
+.join .skills span {
+    font-size: 30px;
+}
+
+/* .join div {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 90vh;
+}
 
-    background: red;
+.join button {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    background: #1e2328;
+    color: #cdbe91;
+    box-shadow: inset 0 0 2px #000000;
+    border-image: linear-gradient(to bottom, #c8aa6d, #7a5c29);
+    border-image-slice: 1;
+    border-width: 2px;
+}
+
+.join button:hover {
+    text-shadow: 0 0 5px #ffffff80;
+    box-shadow: 0 0 8px 0 #ffffff50;
+    background: linear-gradient(to bottom, #1e2328, #433d2b);
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.join button:active {
+    text-shadow: none;
+    box-shadow: none;
+    color: #cdbe9130;
+}
+
+.join image {
+    background-color: black;
+}
+
+.join img {
+    zoom: 20%;
+} */
+
+footer {
+    height: 10%;
+    width: 100%;
+
+    background: linear-gradient(180deg, white, rgba(126, 126, 126, 0.3))
 }
