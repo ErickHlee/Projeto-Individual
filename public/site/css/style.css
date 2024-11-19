@@ -396,91 +396,50 @@ nav li h2 {
     transition: 0.3s
 }
 
+
+
 .join {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 70vh;
     width: 100%;
-    /* filter:blur(8px); */
 }
 
 .join .container {
     display: flex;
+    /* flex-direction: column; */
     justify-content: space-around;
     align-items: center;
     height: 90%;
-    width: 90%;
-    gap: 50px;
-}
-
-.join .skills {
-    width: 40%;
-    height: 50%;
-}
-
-.join .skills .container-skill {
-    display: flex;
     width: 100%;
-    height: 100%;
 }
 
-.join .skills img {
-    margin: 20px 50px 50px 0;
-    width: 50px;
-    height: 50px;
-}
-
-.container-skill img:first-child {
-    border-right: 2px solid black;
-}
-
-.join .skills span {
-    font-size: 30px;
-}
-
-/* .join div {
-    width: 100%;
-    height: 100%;
+.join .title {
     display: flex;
     justify-content: center;
-    align-items: center;
+    height: 10%;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.join button {
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    padding: 5px 15px;
-    background: #1e2328;
-    color: #cdbe91;
-    box-shadow: inset 0 0 2px #000000;
-    border-image: linear-gradient(to bottom, #c8aa6d, #7a5c29);
-    border-image-slice: 1;
-    border-width: 2px;
+.join .title h2 {
+    font-weight: normal;
+    font-size: 50px;
 }
 
-.join button:hover {
-    text-shadow: 0 0 5px #ffffff80;
-    box-shadow: 0 0 8px 0 #ffffff50;
-    background: linear-gradient(to bottom, #1e2328, #433d2b);
-    cursor: pointer;
-    transition: 0.1s;
+.join .video iframe {
+    box-shadow: 10px 10px 25px black;
 }
 
-.join button:active {
-    text-shadow: none;
-    box-shadow: none;
-    color: #cdbe9130;
+.join .window-skill {
+    display: flex;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    width: 40%;
+    height: 55%;
+    /* background: red; */
 }
 
-.join image {
-    background-color: black;
-}
 
-.join img {
-    zoom: 20%;
-} */
 
 footer {
     height: 10%;

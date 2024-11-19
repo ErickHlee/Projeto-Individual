@@ -140,7 +140,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="button">
                 <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
                 <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
@@ -149,29 +148,72 @@
     </div>
 
     <div class="join">
+        <div class="title">
+            <h2>Habilidades</h2>
+        </div>
         <div class="container">
-            <iframe width="800" height="455" src="https://www.youtube.com/embed/h0Pwn7G-eLE?si=32RITvF4Ga4QiGlM"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-            <div class="skills">
-                <span>Habilidades</span>
+            <div class="video">
+                <iframe width="800" height="455" src="https://www.youtube.com/embed/h0Pwn7G-eLE?si=32RITvF4Ga4QiGlM"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="window-skill">
                 <div class="container-skill">
-                    <img src="../src/Kindred_Passive.png">
-                    <!-- Marca da Kindred -->
-                    <img src="../src/KindredQ.png">
-                    <!-- Dança de Flechas -->
-                    <img src="../src/KindredW.png">
-                    <!-- Frenesi do Lobo -->
-                    <img src="../src/KindredEWrapper.png">
-                    <!-- Pesar Crescente -->
-                    <img src="../src/KindredR.png">
-                    <!-- Refúgio da Ovelha -->
+                    <div class="skill" id="img_passive">
+                        <img src="../src/Kindred_Passive.png" onclick="showPassiveText()">
+                        <p style="display: none;" id="text_passive">Os Kindred marcam alvos para Caçar. Concluir uma
+                            Caçada
+                            fortalece permanentemente as habilidades básicas deles. A cada 4 caçadas concluídas, o
+                            Alcance
+                            de Ataque também aumenta.</p>
+                    </div>
+                </div>
+
+                <div class="container-skill">
+                    <div class="skill" id="img_Q">
+                        <img src="../src/KindredQ.png" onclick="showQText()">
+                        <p style="display: none;" id="text_q">Os Kindred salta alvejando os três alvos mais próximos,
+                            causando dano físico em todos eles. O alvo que Ovelha tiver selecionado para um ataque
+                            básico será alvo de um dos disparos.</p>
+                    </div>
+                </div>
+
+                <div class="container-skill">
+                    <div class="skill" id="img_W">
+                        <img src="../src/KindredW.png" onclick="showWText()">
+                        <p style="display: none;" id="text_w">O Lobo se enraivece e ataca inimigos à sua volta. A Ovelha
+                            ganha acúmulos passivamente ao se mover e atacar. Quando totalmente carregado, o próximo
+                            ataque da Ovelha recupera Vida.</p>
+                    </div>
+                </div>
+
+                <div class="container-skill">
+                    <div class="skill" id="img_E">
+                        <img src="../src/KindredEWrapper.png" onclick="showEText()">
+                        <p style="display: none;" id="text_e">A Ovelha faz um disparo cuidadoso, reduzindo a velocidade
+                            de seu alvo. Se a Ovelha atacar o alvo mais duas vezes, seu próximo ataque fará com que o
+                            Lobo salte no inimigo, golpeando-o e causando muito dano.</p>
+                    </div>
+                </div>
+
+                <div class="container-skill">
+                    <div class="skill" id="img_R">
+                        <img src="../src/KindredR.png" onclick="showRText()">
+                        <p style="display: none;" id="text_r">A Ovelha concede refúgio contra a morte para todos os
+                            seres vivos em uma área. Até que seu efeito acabe, nada pode morrer. No fim de sua duração,
+                            as unidades são curadas.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <p>Dado sobre a economia jogador brasileiro e brasileira</p>
+    <p>Dado sobre a economia CBLOL, influencer, bootcamp, atração de marcas internacionais ao brasil</p>
+    <p>ONU: invisibilidade das mulheres no contexto de Jogos</p>
+    <p>ONU: solução - mostrar à comunidade o contrário</p>
+    <p>Resolver o problema</p>
 
     <footer>
         <div class="container">
