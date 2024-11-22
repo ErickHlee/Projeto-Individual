@@ -217,7 +217,8 @@ nav li h2 {
     height: 100vh;
     width: 100%;
     border-top: solid 10px #0b0b1388;
-    background: linear-gradient(150deg, #0B0B13, rgba(32, 32, 32, 0.938));
+    /* background: linear-gradient(150deg, #0B0B13, rgba(32, 32, 32, 0.938)); */
+    background: #0B0B13;
     z-index: 100;
 }
 
@@ -247,7 +248,7 @@ nav li h2 {
 
 
 .main-middle {
-    background: #b1b1b1;
+    background: #0B0B13;
     overflow: hidden;
     height: 100vh;
     width: 100%;
@@ -396,9 +397,8 @@ nav li h2 {
     transition: 0.3s
 }
 
-
-
 .join {
+    background: #0B0B13;
     height: 70vh;
     width: 100%;
 }
@@ -418,12 +418,13 @@ nav li h2 {
     height: 10%;
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .join .title h2 {
     font-weight: normal;
     font-size: 50px;
+    color: white;
 }
 
 .join .video iframe {
@@ -433,17 +434,31 @@ nav li h2 {
 .join .window-skill {
     display: flex;
     justify-content: space-evenly;
-    /* align-items: center; */
     width: 40%;
     height: 55%;
+    gap: 30px;
     /* background: red; */
+}
+
+.join .window-skill p {
+    color: white;
 }
 
 
 
+
+
+
 footer {
-    height: 10%;
+    height: 30%;
     width: 100%;
 
-    background: linear-gradient(180deg, white, rgba(126, 126, 126, 0.3))
+    background: linear-gradient(to bottom,white,#0B0B13);
+}
+
+footer .container {
+    height: 90%;
+    width: 100%;
+
+    /* background: blue; */
 }
