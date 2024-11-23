@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon"> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derdnik | Dashboard</title>
+
+    <link rel="stylesheet" href="dashboards.css">
+    <script src="comandos.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<body>
+
+    <main>
+
+
+        <div class="header">
+            <div class="container">
+                <div class="img">
+                    <img src="../src/icon.png">
+                </div>
+
+                <div class="navbar-button">
+                    <div class="buttons">
+                        <button>
+                            <a href="#"><i class='bx bx-spreadsheet'></i></a>
+                        </button>
+                    </div>
+                    <div class="buttons">
+                        <button>
+                            <a href="wardrobe"><i class='bx bx-photo-album'></i></a>
+                        </button>
+                    </div>
+                    <div class="buttons">
+                        <button>
+                            <a href="../login.html"><i class='bx bx-log-out-circle'></i></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="dashboard">
+            <div class="div_input">
+                <div class="container">
+                    <div class="campos">
+                        <p>Champion:</p>
+                        <input type="text" id="inp_champion">
+                    </div>
+                    <div class="campos">
+                        <p>Abates:</p>
+                        <input type="text" id="inp_abates">
+                    </div>
+                    <div class="campos">
+                        <p>Mortes:</p>
+                        <input type="text" id="inp_mortes">
+                    </div>
+                    <div class="campos">
+                        <button onclick="registrar()">Registrar</button>
+                        <div id="mensagem_erro"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Começo do Gráfico -->
+    <div id="graph">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div id="graph2">
+        <canvas id="myChart2"></canvas>
+    </div>
+
+    <!-- Fim do Graáfico -->
+
+
+</body>
+
+</html>
+<script>
+    function registrar() {
+        // aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var championVar = inp_champion.value;
+        var abatesVar = inp_abates.value;
+        var mortesVar = inp_mortes.value;
+
+        // Verificando se há algum campo em branco
+        if (
+            championVar == "" ||
+            abatesVar == "" ||
+            senmortesVarhaVar == ""
+        ) {
+            mensagem_erro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            setInterval(sumirMensagem, 5000);
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+        // Enviando o valor da nova input
+        fetch("/campeao/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                idEmpresaVincularServer: idEmpresaVincular
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    mensagem_erro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        mensagem_erro.style.display = "none";
+    }
+
+    const t1 = gsap.timeline();
+
+    t1.from(".login", {
+        y: 250,
+        opacity: 0,
+        delay: 0.6
+    });
+
+    t1.from([".login .campo, .login button"], {
+        opacity: 0,
+        delay: 0.2
+    });
+</script>
+
+
+
+<!-- <script>
+    window.load = ReceberVotos()
+
+    championNome = sessionStorage.nome
+    abates = sessionStorage.abates
+    mortes = sessionStorage.mortes
+
+    function graficoradar() {
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Ad',
+                    'AtkSpd',
+                    'Ap',
+                    'Hp',
+                    'Crit',
+                    'Cdr'
+                ],
+                datasets: [{
+                    label: 'Atributos do Ítem Mítico',
+                    data: [Ad, AtkSpd, Ap, Hp, Crit, Cdr],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)',
+                },
+                ]
+            },
+            options: {
+                elements: {
+                    line: {
+                        borderWidth: 3
+
+                    }
+                }
+            },
+        }
+        );
+    }
+    window.onload = graficoradar()
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    // Começo do gráfico dinâmico
+
+    function ReceberVotos() {
+        // aguardar();
+
+        fetch(`/medidas/tempo-real/`
+        ).then(function (resposta) {
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.VOTORED = json[0].voto;
+                    sessionStorage.VOTOBLUE = json[1].voto;
+                    sessionStorage.VOTOGREEN = json[2].voto;
+
+                    GraficoVotos()
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    function GraficoVotos() {
+        VotoRed = sessionStorage.VOTORED;
+        VotoBlue = sessionStorage.VOTOBLUE;
+        VotoGreen = sessionStorage.VOTOGREEN;
+
+        CriarGrafico()
+    }
+
+    function CriarGrafico() {
+        const ctx2 = document.getElementById('myChart2');
+
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Popularidade do Smite'],
+                datasets: [{
+                    label: 'Smite Vermelho',
+                    data: [sessionStorage.VOTORED],
+                    backgroundColor: '#FF0F00', // Cor do fundo
+                    borderColor: '#000000'
+                },
+                {
+                    label: 'Smite Verde',
+                    data: [sessionStorage.VOTOBLUE],
+                    backgroundColor: '#A1E41F', // Cor do fundo
+                    borderColor: '#000000'
+                },
+                {
+                    label: 'Smite Verde',
+                    data: [sessionStorage.VOTOGREEN],
+                    backgroundColor: '#70F9F4', // Cor do fundo
+                    borderColor: '#000000'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+
+                }
+
+            }
+        });
+    }
+
+    function votoRed() {
+        var Votos1Var = 'red'
+        fetch("/usuarios/cadastrarVoto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                VotoServer: Votos1Var
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location = "dashboard.html";
+                }, "500")
+
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function votoBlue() {
+        var Votos2Var = 'blue'
+        fetch("/usuarios/cadastrarVoto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                VotoServer: Votos2Var
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location = "dashboard.html";
+                }, "500")
+
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function votoGreen() {
+        var Votos3Var = 'green'
+        fetch("/usuarios/cadastrarVoto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                VotoServer: Votos3Var
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location = "dashboard.html";
+                }, "500")
+
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function limparSessao() {
+        // aguardar();
+        sessionStorage.clear();
+        // finalizarAguardar();
+        window.location = "../login.html";
+    }
+
+</script> -->

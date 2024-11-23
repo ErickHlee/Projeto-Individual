@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Varela+Round&display=swap');
+
+
+* {
+    font-family: "Poppins", serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: white;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: row;
+}
+
+.header {
+    height: 100%;
+    width: 98px;
+    border-top-right-radius: 36px;
+    border-bottom-right-radius: 36px;
+    background: rgb(31, 30, 30);
+}
+
+.header .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header .img {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 80px auto;
+    height: 50px;
+    width: 50px;
+    /* background: gray;
+    border-radius: 100%; */
+}
+
+.header .img img {
+    height: 50px;
+    width: 50px;
+}
+
+.navbar-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60%;
+}
+
+.navbar-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 100%;
+    border: none;
+}
+
+button i {
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-button button:first-child {
+    margin-bottom: 30px;
+}
+
+.navbar-button .buttons:last-child {
+    margin-top: 120px;
+}
+
+.dashboard {
+    width: calc(100% - 98px);
+    height: 100%;
+
+}
+
+.div_input {
+    width: 50%;
+    height: 50%;
+
+}
+
+.div_input .container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+
+}
