@@ -8,8 +8,8 @@
 
     <title>Derdnik | Login</title>
 
-    <script src="js/sessao.js"></script>
-    <link rel="stylesheet" href="css/logincadastro.css">
+    <script src="site/js/sessao.js"></script>
+    <link rel="stylesheet" href="site/css/logincadastro.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -135,12 +135,11 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                        window.location.href = "dashboard.html";
+                    }, 1000); // apenas para exibir o loadind
 
                 });
 
