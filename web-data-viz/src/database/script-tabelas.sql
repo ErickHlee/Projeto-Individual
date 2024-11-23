@@ -34,7 +34,7 @@ create table partida (
 		constraint chkResultado check (resultado in ('vitoria', 'derrota'))
 );
 
-INSERT INTO campeoes (nome) VALUES
+INSERT INTO campeao (nome) VALUES
 ('Aatrox'),
 ('Ahri'),
 ('Akali'),
@@ -46,7 +46,7 @@ INSERT INTO campeoes (nome) VALUES
 ('Aphelios'),
 ('Ashe'),
 ('Aurelion Sol'),
-('Aurora')
+('Aurora'),
 ('Azir'),
 ('Bardo'),
 ('Bel Veth'),
@@ -99,10 +99,10 @@ INSERT INTO campeoes (nome) VALUES
 ('Kayle'),
 ('Kayn'),
 ('Kennen'),
-('Kha'Zix'),
+('Kha Zix'),
 ('Kindred'),
 ('Kled'),
-('Kog'Maw'),
+('Kog Maw'),
 ('LeBlanc'),
 ('Lee Sin'),
 ('Leona'),
@@ -115,7 +115,7 @@ INSERT INTO campeoes (nome) VALUES
 ('Malzahar'),
 ('Maokai'),
 ('Master Yi'),
-('Milio',)
+('Milio'),
 ('Miss Fortune'),
 ('Mordekaiser'),
 ('Morgana'),

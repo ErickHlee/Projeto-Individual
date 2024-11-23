@@ -20,11 +20,12 @@ main {
 }
 
 .header {
+    position: fixed;
     height: 100%;
     width: 98px;
     border-top-right-radius: 36px;
     border-bottom-right-radius: 36px;
-    background: rgb(31, 30, 30);
+    background: #D1E9F6;
 }
 
 .header .container {
@@ -83,15 +84,24 @@ button i {
     margin-top: 120px;
 }
 
+
 .dashboard {
-    width: calc(100% - 98px);
+    display: flex;
+    justify-content: start;
+    /* width: calc(100% - 98px); */
+    width: 100%;
     height: 100%;
+
+
+    /* background: red; */
 
 }
 
+
 .div_input {
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 100%;
+    margin-top: 30px;
 
 }
 
@@ -99,6 +109,90 @@ button i {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 80%;
+    width: 40%;
+    padding: 20px;
+    background: rgb(210, 224, 251);
+    border-radius: 24px;
 
+}
+
+.div_input input {
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 5px;
+    border-radius: 24px;
+    border: 2px solid #8EACCD;
+}
+
+.div_input button {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    padding: 5px;
+    border-radius: 24px;
+    border: 2px solid #8EACCD;
+}
+
+.div_input select {
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 5px;
+    border-radius: 24px;
+    border: 2px solid #8EACCD;
+}
+
+
+.div_dashboard-esquerdo {
+    height: 80%;
+    width: 55%;
+    margin-top: 30px;
+
+}
+
+.area-da-KPI {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    background: rgb(210, 224, 251);
+    border-radius: 24px;
+    padding: 20px;
+
+}
+
+.area-da-KPI .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 90%;
+}
+
+#kpi-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    background: white;
+    border-radius: 24px;
+}
+
+#kpi-box .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 10px;
+}
+
+#kpi-box #texto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+    font-size: 36px;
 }

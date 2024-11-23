@@ -15,11 +15,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body>
+<body onload="exibir()">
 
     <main>
-
-
         <div class="header">
             <div class="container">
                 <div class="img">
@@ -62,17 +60,60 @@
                         <p>Mortes:</p>
                         <input type="text" id="inp_mortes">
                     </div>
-                        <br>
                     <div class="campos">
+                        <p>Resultado da Partida:</p>
                         <select id="resultado_select">
                             <option value="Vitoria">Vitória</option>
                             <option value="Derrota">Derrota</option>
                         </select>
                     </div>
                     <div class="campos">
+                        <br>
                         <button onclick="cadastrar()">Registrar</button>
                         <div id="mensagem_erro"></div>
                     </div>
+                </div>
+            </div>
+
+            <div class="div_dashboard-esquerdo">
+                <div class="area-da-KPI">
+                    <div class="container">
+                        <div id="kpi-box">
+                            <div class="kill-media">
+                                <div class="title">Média de Abates</div>
+                                <div id="texto mediaAbate"></div>
+                            </div>
+                        </div>
+
+                        <div id="kpi-box">
+                            <div class="morte-media">
+                                <div class="title">Média de Mortes</div>
+                                <div id="texto"></div>
+                            </div>
+                        </div>
+
+                        <div id="kpi-box">
+                            <div class="resultado-media">
+                                <div class="title">Média de Vitória</div>
+                                <div id="texto"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-dos-graficos">
+                    <div class="container">
+                        <div class="grafico-morte-abate">
+
+                        </div>
+
+                        <div class="grafico-taxa-de-vitoria">
+
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -95,32 +136,24 @@
 </html>
 <script>
     function cadastrar() {
-        // aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
         var fkUsuario = sessionStorage.ID_USUARIO;
         var nomeCampeaoVar = inp_nomeCampeao.value;
         var abatesVar = inp_abates.value;
         var mortesVar = inp_mortes.value;
         var resultadoSelect = resultado_select.value;
 
-        // Verificando se há algum campo em branco
+
         if (
             resultadoSelect == "" ||
             abatesVar == "" ||
             mortesVar == ""
         ) {
-            mensagem_erro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Mensagem de erro para todos os campos em branco)";
-            setInterval(sumirMensagem, 5000);
+            alert("Mensagem de erro para todos os campos em branco");
             return false;
         } else {
             setInterval(sumirMensagem, 5000);
         }
-
-        // Enviando o valor da nova input
 
         fetch("/partida/cadastrar", {
             method: "POST",
@@ -128,8 +161,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
+
                 fkUsuarioServer: fkUsuario,
                 nomeCampeaoServer: nomeCampeaoVar,
                 abatesServer: abatesVar,
@@ -143,6 +175,7 @@
                 if (resposta.ok) {
                     // DÁ PARA FAZER UM ALERT FRONT-END DIZENDO QUE DEU CERTO
                     alert("Ok.")
+
 
                 } else {
                     // DÁ PARA FAZER UM ALERT FRONT-END
@@ -159,6 +192,48 @@
     function sumirMensagem() {
         mensagem_erro.style.display = "none";
     }
+
+    function exibir() {
+        var fkUsuario = sessionStorage.ID_USUARIO;
+        var nomeCampeaoVar = inp_nomeCampeao.value;
+        var abatesVar = inp_abates.value;
+        var mortesVar = inp_mortes.value;
+        var resultadoSelect = resultado_select.value;
+        fetch("/partida/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+                fkUsuarioServer: fkUsuario,
+                nomeCampeaoServer: nomeCampeaoVar,
+                abatesServer: abatesVar,
+                mortesServer: mortesVar,
+                resultadoPartidaServer: resultadoSelect,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    // DÁ PARA FAZER UM ALERT FRONT-END DIZENDO QUE DEU CERTO
+                    mediaAbate.innerHTML = `${resposta}`
+
+                } else {
+                    // DÁ PARA FAZER UM ALERT FRONT-END
+                    alert ("Erro na exibição");
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+
+
+
 
 
 
