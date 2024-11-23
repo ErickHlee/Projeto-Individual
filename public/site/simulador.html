@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/simulador.css">
+    <script src="js/simulador.js"></script>
+</head>
+
+<body>
+
+    <!-- Simples Header -->
+    <div class="header">
+        <div class="container">
+            <h1>
+                <a href="dashboard/dashboard.html"> < Voltar</a>
+            </h1>
+        </div>
+    </div>
+    <!-- Simples Header -->
+
+    <!-- Calculadora -->
+    <div class="calculadora">
+        <div class="container">
+            <div class="card">
+                <h2>Calculadora<b> V. 13.10</b></h2>
+
+                Duração da partida: <br>
+                <input type="num" id="inp_tempo" placeholder="Tempo em minutos" min="1"> <br>
+                    <br>
+                Quantidade de ouro finalizado: <br>
+                <input min="1" type="number" id="gold_atual" placeholder="Gold Atual"> <br>
+                    <br>
+                Quantidade de minions abatido: <br>
+                <input min="1" type="text" id="minion_abatido" placeholder="Minions Coletadas"> <br>
+                    <br>
+                Quantidade de abates: <br>
+                <input min="1" type="number" id="inp_abate" placeholder="Abates conquistadas"> <br>
+                    <br>
+                Quantidade de assistências: <br>
+                <input min="1" type="number" id="inp_assist" placeholder="Assistências conquistadas"> <br>
+                    <br>
+                <button onclick="calcular()">Calcular</button> <br>
+                    <br>
+                <span id="span1"></span>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -167,7 +167,7 @@ body {
 .footer {
     z-index: 10;
     display: flex;
-    height: 90px;
+    padding: 31px 0;
     background: white;
     color: #fff;
     font-size: 15px;
