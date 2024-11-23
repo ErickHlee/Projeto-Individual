@@ -20,8 +20,7 @@ CREATE TABLE usuario (
 CREATE TABLE campeao (
 	idCampeao int primary key auto_increment,
     nome varchar(45),
-    abates int,
-    mortes int
+    icone varchar(245)
 );
 
 create table partida (
@@ -29,6 +28,8 @@ create table partida (
     fkCampeao int,
     fkUsuario int,
 		constraint pkComposta primary key (idPartida, fkCampeao, fkUsuario),
+	abates int,
+    mortes int,
 	resultado varchar(10),
 		constraint chkResultado check (resultado in ('vitoria', 'derrota'))
 );

@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Derdnik | Dashboard</title>
 
-    <link rel="stylesheet" href="dashboards.css">
-    <script src="comandos.js"></script>
+    <link rel="stylesheet" href="dashboard/dashboards.css">
+    <script src="dashboard/comandos.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -51,8 +51,8 @@
             <div class="div_input">
                 <div class="container">
                     <div class="campos">
-                        <p>Champion:</p>
-                        <input type="text" id="inp_champion">
+                        <p>Nome do Campeão:</p>
+                        <input type="text" id="inp_nomeCampeao">
                     </div>
                     <div class="campos">
                         <p>Abates:</p>
@@ -61,6 +61,13 @@
                     <div class="campos">
                         <p>Mortes:</p>
                         <input type="text" id="inp_mortes">
+                    </div>
+                        <br>
+                    <div class="campos">
+                        <select id="resultado_select">
+                            <option value="Vitoria">Vitória</option>
+                            <option value="Derrota">Derrota</option>
+                        </select>
                     </div>
                     <div class="campos">
                         <button onclick="cadastrar()">Registrar</button>
@@ -92,21 +99,21 @@
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var championVar = inp_champion.value;
+        var fkUsuario = sessionStorage.ID_USUARIO;
+        var nomeCampeaoVar = inp_nomeCampeao.value;
         var abatesVar = inp_abates.value;
         var mortesVar = inp_mortes.value;
+        var resultadoSelect = resultado_select.value;
 
         // Verificando se há algum campo em branco
         if (
-            championVar == "" ||
+            resultadoSelect == "" ||
             abatesVar == "" ||
             mortesVar == ""
         ) {
             mensagem_erro.style.display = "block";
             mensagem_erro.innerHTML =
                 "(Mensagem de erro para todos os campos em branco)";
-
-            finalizarAguardar();
             setInterval(sumirMensagem, 5000);
             return false;
         } else {
@@ -115,7 +122,7 @@
 
         // Enviando o valor da nova input
 
-        fetch("/campeao/cadastrar", {
+        fetch("/partida/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -123,33 +130,27 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                championServer: championVar,
+                fkUsuarioServer: fkUsuario,
+                nomeCampeaoServer: nomeCampeaoVar,
                 abatesServer: abatesVar,
                 mortesServer: mortesVar,
+                resultadoPartidaServer: resultadoSelect,
             }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    mensagem_erro.style.display = "block";
+                    // DÁ PARA FAZER UM ALERT FRONT-END DIZENDO QUE DEU CERTO
+                    alert("Ok.")
 
-                    mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
-
-                    limparFormulario();
-                    finalizarAguardar();
                 } else {
+                    // DÁ PARA FAZER UM ALERT FRONT-END
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
             });
 
         return false;
@@ -166,18 +167,18 @@
 
 
 
-    const t1 = gsap.timeline();
+    // const t1 = gsap.timeline();
 
-    t1.from(".login", {
-        y: 250,
-        opacity: 0,
-        delay: 0.6
-    });
+    // t1.from(".login", {
+    //     y: 250,
+    //     opacity: 0,
+    //     delay: 0.6
+    // });
 
-    t1.from([".login .campo, .login button"], {
-        opacity: 0,
-        delay: 0.2
-    });
+    // t1.from([".login .campo, .login button"], {
+    //     opacity: 0,
+    //     delay: 0.2
+    // });
 </script>
 
 
