@@ -1,4 +1,4 @@
-function calcular() {
+function simularOuroObtido() {
 
     var gold = gold_atual.value;
     var tempo = inp_tempo.value;
