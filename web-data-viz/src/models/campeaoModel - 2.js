@@ -1,12 +1,12 @@
 var database = require("../database/config");
 
-function buscarCampeaoPorPartida(idCampeao) {
+// function buscarCampeaoPorPartida(idCampeao) {
 
-    var instrucaoSql = `SELECT * FROM partida a WHERE fkUsuario = ${idCampeao}`;
+//     var instrucaoSql = `SELECT * FROM partida a WHERE fkUsuario = ${idCampeao}`;
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
+//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+//     return database.executar(instrucaoSql);
+// }
 
 function cadastrar(fkCampeao, fkUsuario, resultado) {
 

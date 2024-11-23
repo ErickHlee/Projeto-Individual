@@ -63,14 +63,13 @@
                         <input type="text" id="inp_mortes">
                     </div>
                     <div class="campos">
-                        <button onclick="registrar()">Registrar</button>
+                        <button onclick="cadastrar()">Registrar</button>
                         <div id="mensagem_erro"></div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
 
     <!-- Começo do Gráfico -->
     <div id="graph">
@@ -88,7 +87,7 @@
 
 </html>
 <script>
-    function registrar() {
+    function cadastrar() {
         // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
@@ -101,7 +100,7 @@
         if (
             championVar == "" ||
             abatesVar == "" ||
-            senmortesVarhaVar == ""
+            mortesVar == ""
         ) {
             mensagem_erro.style.display = "block";
             mensagem_erro.innerHTML =
@@ -115,6 +114,7 @@
         }
 
         // Enviando o valor da nova input
+
         fetch("/campeao/cadastrar", {
             method: "POST",
             headers: {
@@ -123,10 +123,9 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                idEmpresaVincularServer: idEmpresaVincular
+                championServer: championVar,
+                abatesServer: abatesVar,
+                mortesServer: mortesVar,
             }),
         })
             .then(function (resposta) {
@@ -159,6 +158,13 @@
     function sumirMensagem() {
         mensagem_erro.style.display = "none";
     }
+
+
+
+
+
+
+
 
     const t1 = gsap.timeline();
 
