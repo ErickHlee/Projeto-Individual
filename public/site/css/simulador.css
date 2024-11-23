@@ -8,6 +8,15 @@
     font-family: "Poppins", serif;
 }
 
+body {
+    background-image: url(../../src/lol\ market.jpg.webp);
+    backdrop-filter: blur(8px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -19,7 +28,7 @@
     width: 100%;
     margin: auto;
     padding: 20px 0;
-    background: red;
+    background:white;
 }
 
 .header .voltar {
@@ -28,7 +37,7 @@
     align-items: center;
 }
 
-.header .voltar a{
+.header .voltar a {
     color: black;
     text-decoration: none;
     font-size: 24px;
@@ -37,8 +46,105 @@
 .header .voltar::before {
     display: none;
     content: '<';
+
 }
 
 .header .voltar::hover {
+    display: block;
+    opacity: 1;
+}
 
+.header .voltar::after {
+    display: block;
+}
+
+.box {
+    height: 87.7vh;
+    width: 100%;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.box .container {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    padding: 20px ;
+}
+
+.bg-image {
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-image: url('../../src/lol\ market.jpg.webp');
+    background-size: cover;
+    background-position: -220px 0;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+.calculadora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    background: white;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.calculadora .container {
+    margin: 0;
+    flex-direction: column;
+}
+
+.input-campo {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: 100%;
+    width: 100%;
+}
+
+.campos {
+    display: flex;
+    flex-direction: column
+}
+
+.campos input {
+    border: none;
+    border-bottom: solid 1px gray;
+}
+
+.calculadora button {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 20px 20px;
+    cursor: pointer;
+}
+
+.resultado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40%;
+    width: 100%;
+}
+
+.calculadora button {
+    border: 3px solid rgba(255, 208, 208, 0.7);
+    border-radius: 24px;
+}
+
+.calculadora .resultado button {
+    margin-top: 10px;
 }
