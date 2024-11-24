@@ -211,6 +211,28 @@ select nome, abates, mortes, idPartida as 'Número da Partida', resultado from p
 		on idCampeao = fkCampeao;
 desc partida;
 
-select truncate(avg(abates), 2) as mediaAbate, truncate(avg(mortes),2) as mediaMorte, count(resultado) as totalPartida, sum(resultado) as somaVitoria
+select * from partida;
+
+
+-- PEGAR AS MÉDIAS
+select truncate(avg(abates), 2) as mediaAbate, truncate(avg(mortes),2) as mediaMorte,
+ count(resultado) as totalPartida, sum(resultado) as somaVitoria
 	from partida
-		where fkUsuario = 1;
+		where fkUsuario = 2;
+-- PEGAR AS MÉDIAS
+
+
+-- PEGAR DADOS PARA GRAFICO KILL MORTE
+select abates as Abate, mortes as Mortes, idPartida as numPartida from partida
+	where fkUsuario = 1;
+-- PEGAR DADOS PARA GRAFICO KILL MORTE
+
+
+-- PEGAR DADOS PARA VITORIA DERROTA
+select count(resultado) as totalPartida,
+ sum(resultado) as somaVitoria,
+ dataPartida as dataPartida
+		from partida
+			where fkUsuario = 2
+				group by dataPartida;
+-- PEGAR DADOS PARA VITORIA DERROTA
