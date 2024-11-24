@@ -6,20 +6,22 @@ function cadastrar(fkCampeao, fkUsuario, abates, mortes, resultado) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO partida (fkCampeao, fkUsuario, abates, mortes, resultado) VALUES ('${fkCampeao}', '${fkUsuario}', '${mortes}', ${mortes}, '${resultado}');
+        INSERT INTO partida (fkCampeao, fkUsuario, abates, mortes, resultado) VALUES ('${fkCampeao}', '${fkUsuario}', '${abates}', ${mortes}, '${resultado}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function exibir(abates, mortes, resultado) {
+function buscarMedia(fkUsuario) {
     var instrucaoSql = `
-    select avg(${abates}), avg(${mortes}),
+    select truncate(avg(abates), 2) as mediaAbate, truncate(avg(mortes),2) as mediaMorte, count(resultado) as totalPartida, sum(resultado) as somaVitoria
+	from partida
+		where fkUsuario = ${fkUsuario};
     `;
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
     cadastrar,
-    exibir
+    buscarMedia
 };

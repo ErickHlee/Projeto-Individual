@@ -15,7 +15,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body onload="exibir()">
+<body onload="inicialização()">
 
     <main>
         <div class="header">
@@ -46,95 +46,112 @@
 
 
         <div class="dashboard">
-            <div class="div_input">
-                <div class="container">
-                    <div class="campos">
-                        <p>Nome do Campeão:</p>
-                        <input type="text" id="inp_nomeCampeao">
-                    </div>
-                    <div class="campos">
-                        <p>Abates:</p>
-                        <input type="text" id="inp_abates">
-                    </div>
-                    <div class="campos">
-                        <p>Mortes:</p>
-                        <input type="text" id="inp_mortes">
-                    </div>
-                    <div class="campos">
-                        <p>Resultado da Partida:</p>
-                        <select id="resultado_select">
-                            <option value="Vitoria">Vitória</option>
-                            <option value="Derrota">Derrota</option>
-                        </select>
-                    </div>
-                    <div class="campos">
-                        <br>
-                        <button onclick="cadastrar()">Registrar</button>
-                        <div id="mensagem_erro"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="div_dashboard-esquerdo">
-                <div class="area-da-KPI">
+            <div class="area-top">
+                <div class="div_input">
                     <div class="container">
-                        <div id="kpi-box">
-                            <div class="kill-media">
-                                <div class="title">Média de Abates</div>
-                                <div id="texto mediaAbate"></div>
-                            </div>
+                        <div class="campos">
+                            <p>Nome do Campeão:</p>
+                            <input type="text" id="inp_nomeCampeao" placeholder="Insira o nome do Campeão">
                         </div>
 
-                        <div id="kpi-box">
-                            <div class="morte-media">
+                        <div class="campos">
+                            <p>Abates:</p>
+                            <input type="text" id="inp_abates" placeholder="Insira a quantidade de abates">
+                        </div>
+
+                        <div class="campos">
+                            <p>Mortes:</p>
+                            <input type="text" id="inp_mortes" placeholder="Insira a quantidade de mortes">
+                        </div>
+
+                        <div class="campos">
+                            <p>Resultado da Partida:</p>
+                            <select id="resultado_select">
+                                <option value="1">Vitória</option>
+                                <option value="0">Derrota</option>
+                            </select>
+                        </div>
+
+                        <div class="campos">
+                            <br>
+                            <button onclick="cadastrar()">Registrar</button>
+                            <div id="mensagem_erro"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="div_kpi">
+                    <div class="divisao">
+                        <div class="container">
+                            <div class="kpi-box">
+                                <div class="title">
+                                    <p>Média de Abates</p>
+                                </div>
+                                <div class="texto" id="mediaAbate"></div>
+                            </div>
+
+                            <div class="kpi-box">
                                 <div class="title">Média de Mortes</div>
-                                <div id="texto"></div>
+                                <div class="texto" id="mediaMorte"></div>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="kpi-box">
-                            <div class="resultado-media">
+                    <div class="divisao">
+                        <div class="container">
+                            <div class="kpi-box">
+                                <div class="title">Partidas Jogadas</div>
+                                <div class="texto" id="partidasJogadas"></div>
+                            </div>
+
+                            <div class="kpi-box">
                                 <div class="title">Média de Vitória</div>
-                                <div id="texto"></div>
+                                <div class="texto" id="taxaVitoria"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="area-dos-graficos">
-                    <div class="container">
-                        <div class="grafico-morte-abate">
-
-                        </div>
-
-                        <div class="grafico-taxa-de-vitoria">
-
-                        </div>
-                    </div>
-
-
-
                 </div>
             </div>
+
+
+            <div class="area-mid">
+                <div class="div_grafico">
+                    <div class="container">
+                        <div class="grafico-box">
+                            <canvas id="chartKillMorte"></canvas>
+                        </div>
+
+                        <div class="grafico-box">
+                            <canvas id="chartResultadoPartida"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="historico">
+                <div class="container">
+                    <div class="box-historico">
+                        <h2>Oi</h2>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- Começo do Gráfico -->
-    <div id="graph">
-        <canvas id="myChart"></canvas>
-    </div>
 
-    <div id="graph2">
-        <canvas id="myChart2"></canvas>
-    </div>
-
-    <!-- Fim do Graáfico -->
-
-
+    <script src="dashboard/grafico.js"></script>
 </body>
 
 </html>
 <script>
+
+    function inicialização() {
+        buscarMedia();
+        criarGraficoKillMorte(sessionStorage.ID_USUARIO);
+    }
+
     function cadastrar() {
 
         var fkUsuario = sessionStorage.ID_USUARIO;
@@ -175,6 +192,9 @@
                 if (resposta.ok) {
                     // DÁ PARA FAZER UM ALERT FRONT-END DIZENDO QUE DEU CERTO
                     alert("Ok.")
+                    buscarMedia();
+
+                    window.location = "dashboard.html";
 
 
                 } else {
@@ -187,19 +207,18 @@
             });
 
         return false;
+
+
     }
 
     function sumirMensagem() {
         mensagem_erro.style.display = "none";
     }
 
-    function exibir() {
+    function buscarMedia() {
         var fkUsuario = sessionStorage.ID_USUARIO;
-        var nomeCampeaoVar = inp_nomeCampeao.value;
-        var abatesVar = inp_abates.value;
-        var mortesVar = inp_mortes.value;
-        var resultadoSelect = resultado_select.value;
-        fetch("/partida/cadastrar", {
+
+        fetch("/partida/buscarMedia", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -207,22 +226,27 @@
             body: JSON.stringify({
 
                 fkUsuarioServer: fkUsuario,
-                nomeCampeaoServer: nomeCampeaoVar,
-                abatesServer: abatesVar,
-                mortesServer: mortesVar,
-                resultadoPartidaServer: resultadoSelect,
             }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    // DÁ PARA FAZER UM ALERT FRONT-END DIZENDO QUE DEU CERTO
-                    mediaAbate.innerHTML = `${resposta}`
+
+                    resposta.json().then(
+                        (jsonResposta) => {
+                            var taxaDeVitoria = (jsonResposta[0].somaVitoria / jsonResposta[0].totalPartida) * 100
+
+                            mediaAbate.innerHTML = `${jsonResposta[0].mediaAbate}`
+                            mediaMorte.innerHTML = `${jsonResposta[0].mediaMorte}`
+                            partidasJogadas.innerHTML = `${jsonResposta[0].totalPartida}`
+                            taxaVitoria.innerHTML = `${(taxaDeVitoria).toFixed(2)}%`
+                        }
+                    )
 
                 } else {
-                    // DÁ PARA FAZER UM ALERT FRONT-END
-                    alert ("Erro na exibição");
+
+                    alert("Erro na exibição");
                 }
             })
             .catch(function (resposta) {
@@ -231,277 +255,4 @@
 
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
-    // const t1 = gsap.timeline();
-
-    // t1.from(".login", {
-    //     y: 250,
-    //     opacity: 0,
-    //     delay: 0.6
-    // });
-
-    // t1.from([".login .campo, .login button"], {
-    //     opacity: 0,
-    //     delay: 0.2
-    // });
 </script>
-
-
-
-<!-- <script>
-    window.load = ReceberVotos()
-
-    championNome = sessionStorage.nome
-    abates = sessionStorage.abates
-    mortes = sessionStorage.mortes
-
-    function graficoradar() {
-
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [
-                    'Ad',
-                    'AtkSpd',
-                    'Ap',
-                    'Hp',
-                    'Crit',
-                    'Cdr'
-                ],
-                datasets: [{
-                    label: 'Atributos do Ítem Mítico',
-                    data: [Ad, AtkSpd, Ap, Hp, Crit, Cdr],
-                    fill: true,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    pointBackgroundColor: 'rgb(255, 99, 132)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(255, 99, 132)',
-                },
-                ]
-            },
-            options: {
-                elements: {
-                    line: {
-                        borderWidth: 3
-
-                    }
-                }
-            },
-        }
-        );
-    }
-    window.onload = graficoradar()
-    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-    // Começo do gráfico dinâmico
-
-    function ReceberVotos() {
-        // aguardar();
-
-        fetch(`/medidas/tempo-real/`
-        ).then(function (resposta) {
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.VOTORED = json[0].voto;
-                    sessionStorage.VOTOBLUE = json[1].voto;
-                    sessionStorage.VOTOGREEN = json[2].voto;
-
-                    GraficoVotos()
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    // finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-    function GraficoVotos() {
-        VotoRed = sessionStorage.VOTORED;
-        VotoBlue = sessionStorage.VOTOBLUE;
-        VotoGreen = sessionStorage.VOTOGREEN;
-
-        CriarGrafico()
-    }
-
-    function CriarGrafico() {
-        const ctx2 = document.getElementById('myChart2');
-
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Popularidade do Smite'],
-                datasets: [{
-                    label: 'Smite Vermelho',
-                    data: [sessionStorage.VOTORED],
-                    backgroundColor: '#FF0F00', // Cor do fundo
-                    borderColor: '#000000'
-                },
-                {
-                    label: 'Smite Verde',
-                    data: [sessionStorage.VOTOBLUE],
-                    backgroundColor: '#A1E41F', // Cor do fundo
-                    borderColor: '#000000'
-                },
-                {
-                    label: 'Smite Verde',
-                    data: [sessionStorage.VOTOGREEN],
-                    backgroundColor: '#70F9F4', // Cor do fundo
-                    borderColor: '#000000'
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-
-                }
-
-            }
-        });
-    }
-
-    function votoRed() {
-        var Votos1Var = 'red'
-        fetch("/usuarios/cadastrarVoto", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                VotoServer: Votos1Var
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                setTimeout(() => {
-                    window.location = "dashboard.html";
-                }, "500")
-
-                limparFormulario();
-                // finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    function votoBlue() {
-        var Votos2Var = 'blue'
-        fetch("/usuarios/cadastrarVoto", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                VotoServer: Votos2Var
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                setTimeout(() => {
-                    window.location = "dashboard.html";
-                }, "500")
-
-                limparFormulario();
-                // finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    function votoGreen() {
-        var Votos3Var = 'green'
-        fetch("/usuarios/cadastrarVoto", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                VotoServer: Votos3Var
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                setTimeout(() => {
-                    window.location = "dashboard.html";
-                }, "500")
-
-                limparFormulario();
-                // finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    function limparSessao() {
-        // aguardar();
-        sessionStorage.clear();
-        // finalizarAguardar();
-        window.location = "../login.html";
-    }
-
-</script> -->

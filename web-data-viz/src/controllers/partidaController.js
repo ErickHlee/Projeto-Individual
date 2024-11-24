@@ -51,26 +51,13 @@ async function cadastrar(req, res) {
     }
 }
 
-async function exibir(req, res) {
-    var nomeCampeao = req.body.nomeCampeaoServer;
-    var abates = req.body.abatesServer;
-    var mortes = req.body.mortesServer;
-    var resultadoPartida = req.body.resultadoPartidaServer;
+function buscarMedia(req, res) {
+    var fkUsuario = req.body.fkUsuarioServer;
 
-    var idCampeao = await campeaoModel.buscar(nomeCampeao)
-        .then(
-            (data) => {
-                console.log(data.length);
-                var id = data.length == 0 ? "Não existe" : data[0].idCampeao
-                return id;
-            }
-        )
-
-    console.log(idCampeao)
-    if (idCampeao == "Não existe") {
-        res.status(404).send("idCampeão não existe")
+    if (fkUsuario == undefined) {
+        res.status(404).send("fkUsuario não existe")
     } else {
-        usuarioModel.exibir(abates, mortes, resultadoPartida)
+        usuarioModel.buscarMedia(fkUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -90,5 +77,5 @@ async function exibir(req, res) {
 
 module.exports = {
     cadastrar,
-    exibir
+    buscarMedia
 }

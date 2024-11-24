@@ -1,0 +1,19 @@
+var database = require("../database/config");
+
+function buscarUltimasMedidas(fkUsuario, limite_linhas) {
+
+    instrucaoSql = ''
+
+    instrucaoSql = `select abates as Abate, mortes as Mortes, idPartida as numPartida from partida
+	where fkUsuario = ${fkUsuario}
+    order by idPartida desc
+    limit ${limite_linhas};`
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+module.exports = {
+    buscarUltimasMedidas
+}

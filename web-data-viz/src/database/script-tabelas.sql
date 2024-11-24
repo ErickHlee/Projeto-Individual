@@ -30,8 +30,8 @@ create table partida (
 		constraint pkComposta primary key (idPartida, fkCampeao, fkUsuario),
 	abates int,
     mortes int,
-	resultado varchar(10),
-		constraint chkResultado check (resultado in ('vitoria', 'derrota'))
+	resultado int,
+    dataPartida date
 );
 
 INSERT INTO campeao (nome) VALUES
@@ -202,3 +202,15 @@ INSERT INTO campeao (nome) VALUES
 ('Zilean'),
 ('Zoe'),
 ('Zyra');
+
+insert into usuario (nome, email, senha) values
+	('erick', 'erick@gmail.com', '111111');
+
+select nome, abates, mortes, idPartida as 'Número da Partida', resultado from partida
+	join campeao
+		on idCampeao = fkCampeao;
+desc partida;
+
+select truncate(avg(abates), 2) as mediaAbate, truncate(avg(mortes),2) as mediaMorte, count(resultado) as totalPartida, sum(resultado) as somaVitoria
+	from partida
+		where fkUsuario = 1;

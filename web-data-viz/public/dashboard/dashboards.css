@@ -12,9 +12,16 @@ body {
     background: white;
 }
 
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    /* background: rgb(255, 0, 0, 0.1); */
+}
+
 main {
     display: flex;
-    height: 100vh;
+    /* height: 150vh; */
     width: 100%;
     flex-direction: row;
 }
@@ -85,114 +92,205 @@ button i {
 }
 
 
+
+
+
+
+
 .dashboard {
     display: flex;
-    justify-content: start;
-    /* width: calc(100% - 98px); */
-    width: 100%;
+    flex-direction: column;
+    justify-self: end;
+    width: calc(100% - 98px);
     height: 100%;
-
-
-    /* background: red; */
-
+    margin-left: 98px;
 }
 
+.area-top {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 50%;
+    margin-top: 40px;
+}
 
 .div_input {
-    width: 40%;
+    display: flex;
+    justify-content: center;
+    width: 30%;
     height: 100%;
-    margin-top: 30px;
-
+    background: #8EACCD;
+    border-radius: 24px;
 }
 
-.div_input .container {
-    display: flex;
+.div_input .container{
     flex-direction: column;
-    margin: auto;
-    width: 40%;
-    padding: 20px;
-    background: rgb(210, 224, 251);
-    border-radius: 24px;
+    justify-content: center;
+    align-items: center;
+}
 
+.campos {
+    width: 100%;
+    padding: 5px 0;
 }
 
 .div_input input {
-    width: 100%;
-    height: auto;
     background: white;
+    width: 100%;
     padding: 5px;
     border-radius: 24px;
-    border: 2px solid #8EACCD;
+    border: solid 2px #84a5c8;
+}
+
+.div_input .campos:last-child {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin-top: 20px;
 }
 
 .div_input button {
-    width: 100%;
-    height: auto;
-    background: transparent;
+    background: white;
+    width: 50%;
     padding: 5px;
     border-radius: 24px;
-    border: 2px solid #8EACCD;
+    border: solid 2px #84a5c8;
 }
 
 .div_input select {
-    width: 100%;
-    height: auto;
     background: white;
+    width: 100%;
     padding: 5px;
     border-radius: 24px;
-    border: 2px solid #8EACCD;
+    border: solid 2px #84a5c8;
 }
 
 
-.div_dashboard-esquerdo {
-    height: 80%;
-    width: 55%;
-    margin-top: 30px;
 
-}
 
-.area-da-KPI {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 50%;
-    background: rgb(210, 224, 251);
-    border-radius: 24px;
-    padding: 20px;
 
-}
 
-.area-da-KPI .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-    height: 90%;
-}
 
-#kpi-box {
+
+
+.div_kpi {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 30%;
+    justify-content: space-evenly;
+    width: 60%;
     height: 100%;
+}
+
+.div_kpi .divisao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 50%;
+    background: #8EACCD;
+    border-radius: 24px;
+    padding: 20px;
+}
+
+.div_kpi .divisao:first-child {
+    margin-bottom: 50px;
+}
+
+.divisao .container {
+    width: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+
+}
+
+.kpi-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100px;
     background: white;
     border-radius: 24px;
 }
 
-#kpi-box .title {
+.kpi-box .title {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 20%;
     margin-top: 10px;
 }
 
-#kpi-box #texto {
+.kpi-box .texto {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80%;
+    height: 100%;
     width: 100%;
-    font-size: 36px;
+}
+
+
+
+
+
+
+
+.area-mid {
+    width: 100%;
+    height: 40%;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.div_grafico {
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.div_grafico .container {
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 90%;
+    width: 95%;
+}
+
+.grafico-box {
+    display: flex;
+    width: 45%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+.historico {
+    display: flex;
+    justify-content: center;
+    height: 50vh;
+    width: 100%;
+}
+
+.historico .container {
+    justify-content: center;
+    align-items: center;
+
+    height: 90%;
+    width: 95%;
+
+}
+
+.historico .box-historico{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    background: #8EACCD;
 }

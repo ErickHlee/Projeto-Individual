@@ -8,7 +8,7 @@ router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
-router.post("/exibir", function (req, res) {
-    usuarioController.exibir(req, res);
+router.post("/buscarMedia", function (req, res) {
+    usuarioController.buscarMedia(req, res);
 });
 module.exports = router;
