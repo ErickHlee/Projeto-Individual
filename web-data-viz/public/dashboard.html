@@ -9,7 +9,6 @@
     <title>Derdnik | Dashboard</title>
 
     <link rel="stylesheet" href="dashboard/dashboards.css">
-    <script src="dashboard/comandos.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -159,6 +158,7 @@
         var abatesVar = inp_abates.value;
         var mortesVar = inp_mortes.value;
         var resultadoSelect = resultado_select.value;
+        var dataVar;
 
 
         if (
@@ -184,10 +184,11 @@
                 abatesServer: abatesVar,
                 mortesServer: mortesVar,
                 resultadoPartidaServer: resultadoSelect,
+                dataServer: dataVar,
             }),
         })
             .then(function (resposta) {
-                console.log("resposta: ", resposta);
+                // console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
                     // DÁ PARA FAZER UM ALERT FRONT-END DIZENDO QUE DEU CERTO
@@ -229,7 +230,7 @@
             }),
         })
             .then(function (resposta) {
-                console.log("resposta: ", resposta);
+                // console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
 

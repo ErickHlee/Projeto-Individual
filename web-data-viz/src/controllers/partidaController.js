@@ -7,6 +7,7 @@ async function cadastrar(req, res) {
     var abates = req.body.abatesServer;
     var mortes = req.body.mortesServer;
     var resultadoPartida = req.body.resultadoPartidaServer;
+    var dataPartida = req.body.dataServer;
 
     if (abates == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -32,7 +33,7 @@ async function cadastrar(req, res) {
 
 
             // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-            usuarioModel.cadastrar(idCampeao, fkUsuario, abates, mortes, resultadoPartida)
+            usuarioModel.cadastrar(idCampeao, fkUsuario, abates, mortes, resultadoPartida, dataPartida)
                 .then(
                     function (resultado) {
                         res.json(resultado);

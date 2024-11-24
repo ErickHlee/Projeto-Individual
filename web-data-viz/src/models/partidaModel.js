@@ -6,7 +6,7 @@ function cadastrar(fkCampeao, fkUsuario, abates, mortes, resultado) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO partida (fkCampeao, fkUsuario, abates, mortes, resultado) VALUES ('${fkCampeao}', '${fkUsuario}', '${abates}', ${mortes}, '${resultado}');
+        INSERT INTO partida (fkCampeao, fkUsuario, abates, mortes, resultado, dataPartida) VALUES ('${fkCampeao}', '${fkUsuario}', '${abates}', ${mortes}, '${resultado}', CURDATE());
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

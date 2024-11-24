@@ -454,10 +454,7 @@ nav li h2 {
 
 footer {
     height: 30%;
-    width: 100%;
-
-    background: linear-gradient(to bottom,white,#0B0B13);
-}
+    width: 100%;}
 
 footer .container {
     height: 90%;

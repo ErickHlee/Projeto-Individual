@@ -9,11 +9,4 @@ router.post("/cadastrar", function (req, res) {
     campeaoController.cadastrar(req, res);
 });
 
-// router.post("/cadastrar", function (req, res) {
-//     partidaController.cadastrar(req, res);
-// })
-// router.post("/autenticar", function (req, res) {
-//     usuarioController.autenticar(req, res);
-// });
-
 module.exports = router;

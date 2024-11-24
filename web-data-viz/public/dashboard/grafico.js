@@ -1,35 +1,67 @@
+async function obterDadosVitoriaDerrota(fkUsuario) {
+    try {
+        console.log("Aqui")
+        var resposta = await fetch(`/medida/ultimoResultado/${fkUsuario}`, {
+            cache: 'no-store'
+        });
+        var respostaJson = await resposta.json()
+        respostaJson.reverse();
+        return respostaJson;
+    } catch (erro) {
+        throw new Error(erro);
+    }
+}
 
-const ctx2 = document.getElementById('chartResultadoPartida');
+async function criarGraficoVitoriaDerrota(fkUsuario) {
+    var dadosGraficoVitoriaDerrota = await obterDadosVitoriaDerrota(fkUsuario);
+
+    console.log(dadosGraficoVitoriaDerrota);
+
+    var labelData = [];
+    var labelVitoria = [];
+    var labelDerrota = [];
+
+    dadosGraficoVitoriaDerrota.forEach(partida => {
+        console.log(partida.dataPartida)
+        labelData.push(`Partida: ${partida.dataPartida}`)
+
+        // var contagemDerrota = partida.totalPartida - partida.somaVitoria
+        console.log(`funcionou`)
+        labelVitoria.push(partida.somaVitoria);
+        labelDerrota.push(partida.somaVitoria);
+    });
+
+    const ctx2 = document.getElementById('chartResultadoPartida');
 
 
-
-new Chart(ctx2, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: 'Número de Vitórias',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }, {
-            label: 'Número de Derrotas',
-            data: [5, 10, 13, 20, 5, 2],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+    graficoVitoriaDerrota = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: labelData,
+            datasets: [{
+                label: 'Número de Vitórias',
+                data: labelVitoria,
+                borderWidth: 1
+            }, {
+                label: 'Número de Derrotas',
+                data: labelDerrota,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
+    });
+}
 
 
 async function obterDadosKillMorte(fkUsuario) {
     try {
-        console.log(fkUsuario)
+        // console.log(fkUsuario)
         var resposta = await fetch(`/medida/ultimos/${fkUsuario}`, {
             cache: 'no-store'
         });
@@ -44,7 +76,7 @@ async function obterDadosKillMorte(fkUsuario) {
 async function criarGraficoKillMorte(fkUsuario) {
     var dadosGraficoKillMorte = await obterDadosKillMorte(fkUsuario);
 
-    console.log(dadosGraficoKillMorte);
+    // console.log(dadosGraficoKillMorte);
 
     var labelPartida = [];
     var labelAbate = [];
@@ -58,7 +90,6 @@ async function criarGraficoKillMorte(fkUsuario) {
     });
 
     const ctx = document.getElementById('chartKillMorte');
-
 
     graficoKillMorte = new Chart(ctx, {
         type: 'line',
@@ -82,25 +113,4 @@ async function criarGraficoKillMorte(fkUsuario) {
             }
         }
     });
-
-    // setInterval(atualizarGraficoAbateMorte(graficoKillMorte, fkUsuario), 3000);
 }
-
-// async function atualizarGraficoAbateMorte(myChart, fkUsuario) {
-//     var dadosAtualizados = await obterDadosKillMorte(fkUsuario);
-
-//     var labelPartida = [];
-//     var labelAbate = [];
-//     var labelMorte = [];
-
-//     dadosAtualizados.forEach(partida => {
-//         labelPartida.push(`Partida: ${partida.numPartida}`)
-//         labelAbate.push(partida.Abate);
-//         labelMorte.push(partida.Mortes);
-//     });
-
-//     myChart.config.data.labels = labelPartida;
-//     myChart.config.data.datasets[0].data = labelAbate;
-//     myChart.config.data.datasets[1].data = labelMorte;
-//     myChart.update();
-// }
