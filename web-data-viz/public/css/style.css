@@ -431,6 +431,7 @@ nav li h2 {
 }
 
 .join .video iframe {
+    margin-top: 50px;
     box-shadow: 10px 10px 25px black;
 }
 
@@ -454,11 +455,13 @@ nav li h2 {
 
 footer {
     height: 30%;
-    width: 100%;}
+    width: 100%;
+}
 
 footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: end;
     height: 90%;
     width: 100%;
-
-    /* background: blue; */
 }
