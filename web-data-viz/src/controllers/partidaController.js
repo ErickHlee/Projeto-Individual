@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/partidaModel");
+var partidaModel = require("../models/partidaModel");
 var campeaoModel = require("../models/campeaoModel");
 
 async function cadastrar(req, res) {
@@ -20,8 +20,15 @@ async function cadastrar(req, res) {
         var idCampeao = await campeaoModel.buscar(nomeCampeao)
             .then(
                 (data) => {
-                    console.log(data.length);
                     var id = data.length == 0 ? "Não existe" : data[0].idCampeao
+                    return id;
+                }
+            )
+
+        var idPartida = await partidaModel.buscarUltimaPartida(fkUsuario)
+            .then(
+                (data) => {
+                    var id = data.length == 0 ? 1 : data[0].idPartida + 1
                     return id;
                 }
             )
@@ -33,7 +40,7 @@ async function cadastrar(req, res) {
 
 
             // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-            usuarioModel.cadastrar(idCampeao, fkUsuario, abates, mortes, resultadoPartida, dataPartida)
+            partidaModel.cadastrar(idCampeao, idPartida, fkUsuario, abates, mortes, resultadoPartida, dataPartida)
                 .then(
                     function (resultado) {
                         res.json(resultado);
@@ -58,7 +65,7 @@ function buscarMedia(req, res) {
     if (fkUsuario == undefined) {
         res.status(404).send("fkUsuario não existe")
     } else {
-        usuarioModel.buscarMedia(fkUsuario)
+        partidaModel.buscarMedia(fkUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -76,7 +83,25 @@ function buscarMedia(req, res) {
     }
 }
 
+function buscar2UltimasPartidas(req, res) {
+    console.log("Controller de boa")
+    var usuarioFk = req.params.id;
+
+    partidaModel.buscar2UltimasPartidas(usuarioFk).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     cadastrar,
-    buscarMedia
+    buscarMedia,
+    buscar2UltimasPartidas
 }

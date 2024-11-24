@@ -20,7 +20,7 @@ function buscarUltimasMedidasResultado(fkUsuario, limite_linhas) {
 
     instrucaoSql = ''
 
-    instrucaoSql = `select count(resultado) as totalPartida, sum(resultado) as somaVitoria, dataPartida as dataPartida
+    instrucaoSql = `select count(resultado) as totalPartida, sum(resultado) as somaVitoria, date_format(dataPartida, '%Y-%m-%d') as dataPartida
 		    from partida
 			    where fkUsuario = ${fkUsuario}
 				        group by dataPartida

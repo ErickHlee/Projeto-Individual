@@ -130,8 +130,10 @@
 
             <div class="historico">
                 <div class="container">
-                    <div class="box-historico">
-                        <h2>Oi</h2>
+                    <div class="title">
+                        <h2>Histórico de Partida:</h2>
+                    </div>
+                    <div class="box-historico" id="boxHistorico">
                     </div>
                 </div>
             </div>
@@ -149,6 +151,8 @@
     function inicialização() {
         buscarMedia();
         criarGraficoKillMorte(sessionStorage.ID_USUARIO);
+        criarGraficoVitoriaDerrota(sessionStorage.ID_USUARIO);
+        exibirHistorico();
     }
 
     function cadastrar() {
@@ -255,5 +259,40 @@
             });
 
         return false;
+    }
+
+    async function exibirHistorico() {
+        var fkUsuario = sessionStorage.ID_USUARIO;
+
+        try {
+            var resposta = await fetch(`/partida/ultimo2Partidas/${fkUsuario}`, {
+                cache: 'no-store'
+            });
+
+            var respostaJson = await resposta.json()
+            respostaJson.forEach(partida => {
+                var novoElemento = document.createElement("div")
+                var resultado = partida.resultadoPartida == 1 ? 'Vitória' : 'Derrota'
+            novoElemento.id = "historico1"
+            novoElemento.innerHTML = `
+                <div class="historico" id="jogo${partida.numPartida}">
+                            <img src="${partida.iconeCampeao}">
+                            <p>Data do Jogo: <b>${partida.dataJogo}</b></p>
+                            <p>Resultado do Jogo: <b>${resultado}</b></p>
+                            <p>Abates: <b>${partida.abates}</b></p>
+                            <p>Mortes: <b>${partida.mortes}</b></p>
+                        </div>
+                    `
+            var boxHistorico = document.getElementById("boxHistorico")
+            // criar um div filho do id=boxHistorico
+            novoElemento.classList.add("historico")
+            novoElemento.classList.add(resultado)
+
+            boxHistorico.appendChild(novoElemento);
+
+            });
+        } catch (erro) {
+            throw new Error(erro);
+        }
     }
 </script>

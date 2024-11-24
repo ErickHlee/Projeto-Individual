@@ -11,4 +11,8 @@ router.post("/cadastrar", function (req, res) {
 router.post("/buscarMedia", function (req, res) {
     usuarioController.buscarMedia(req, res);
 });
+
+router.get("/ultimo2Partidas/:id", function (req, res) {
+    usuarioController.buscar2UltimasPartidas(req, res)
+});
 module.exports = router;

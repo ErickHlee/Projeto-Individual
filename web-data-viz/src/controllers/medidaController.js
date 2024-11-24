@@ -44,6 +44,8 @@ function buscarUltimasMedidasResultado(req, res) {
     });
 }
 
+
+
 module.exports = {
     buscarUltimasMedidas,
     buscarUltimasMedidasResultado

@@ -1,6 +1,5 @@
 async function obterDadosVitoriaDerrota(fkUsuario) {
     try {
-        console.log("Aqui")
         var resposta = await fetch(`/medida/ultimoResultado/${fkUsuario}`, {
             cache: 'no-store'
         });
@@ -15,25 +14,21 @@ async function obterDadosVitoriaDerrota(fkUsuario) {
 async function criarGraficoVitoriaDerrota(fkUsuario) {
     var dadosGraficoVitoriaDerrota = await obterDadosVitoriaDerrota(fkUsuario);
 
-    console.log(dadosGraficoVitoriaDerrota);
-
     var labelData = [];
     var labelVitoria = [];
     var labelDerrota = [];
 
     dadosGraficoVitoriaDerrota.forEach(partida => {
-        console.log(partida.dataPartida)
-        labelData.push(`Partida: ${partida.dataPartida}`)
+        labelData.push(partida.dataPartida)
 
-        // var contagemDerrota = partida.totalPartida - partida.somaVitoria
-        console.log(`funcionou`)
+        var contagemDerrota = partida.totalPartida - partida.somaVitoria
         labelVitoria.push(partida.somaVitoria);
-        labelDerrota.push(partida.somaVitoria);
+        labelDerrota.push(contagemDerrota);
     });
 
     const ctx2 = document.getElementById('chartResultadoPartida');
 
-
+    // ALTERAR O MODO DE NUM INTEIRO
     graficoVitoriaDerrota = new Chart(ctx2, {
         type: 'line',
         data: {
