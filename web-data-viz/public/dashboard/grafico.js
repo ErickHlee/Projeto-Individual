@@ -4,7 +4,6 @@ async function obterDadosVitoriaDerrota(fkUsuario) {
             cache: 'no-store'
         });
         var respostaJson = await resposta.json()
-        respostaJson.reverse();
         return respostaJson;
     } catch (erro) {
         throw new Error(erro);
