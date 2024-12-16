@@ -18,7 +18,7 @@ async function criarGraficoVitoriaDerrota(fkUsuario) {
     var labelDerrota = [];
 
     dadosGraficoVitoriaDerrota.forEach(partida => {
-        labelData.push(partida.dataPartida)
+        labelData.push(partida.)
 
         var contagemDerrota = partida.totalPartida - partida.somaVitoria
         labelVitoria.push(partida.somaVitoria);
